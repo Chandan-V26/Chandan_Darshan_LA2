@@ -1,0 +1,226 @@
+---
+title: "eda_la2"
+author: "darshan gowda v and chandan v"
+date: "2023-05-29"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(GGally)
+```
+
+```{r}
+library(leaflet)
+library(readr)
+library(lattice)
+library(vioplot)
+
+```
+
+```{r}
+library(ggplot2)
+library(plotrix)
+library(gcookbook)
+library(dplyr)
+
+```
+
+```{r}
+dataset <- read.csv(file.choose())
+```
+
+```{r}
+dataset
+```
+```{r}
+str(dataset)
+```
+```{r}
+hist(dataset$Chicago[1:100])
+```
+```{r}
+boxplot(dataset$Chicago[1:100])
+```
+```{r}
+install.packages("lattice")
+
+
+```
+```{r}
+library(lattice)
+
+```
+
+```{r}
+densityplot(dataset$Chicago[1:100])
+
+```
+```{r}
+densityplot(dataset$Saint.Louis[1:100])
+```
+```{r}
+densityplot(dataset$Portland[1:100])
+```
+```{r}
+qqmath(dataset$Chicago[1:100])
+```
+```{r}
+barplot(table(dataset$Chicago[1:100]), beside = TRUE, legend.text = TRUE)
+```
+```{r}
+qqnorm(dataset$Los.Angeles[1:100])
+```
+```{r}
+str(dataset)
+```
+```{r}
+dataset$Portland <- factor(dataset$Portland)
+barplot(dataset$Chicago[1:100])
+
+
+
+```
+```{r}
+install.packages("ggplot2")
+library(ggplot2)
+```
+
+```{r}
+
+mosaicplot(dataset$Chicago ~ dataset$Portland)
+
+
+```
+
+```{r}
+plot(dataset$Denver[1:100])
+lines(dataset$Denver[1:100])
+
+
+```
+```{r}
+library(lattice)
+xyplot(Denver[1:100] ~ Portland[1:100], data = dataset,
+type = c("p", "smooth"),
+xlab = "denver",
+ylab = "Portland",
+main = "Scatter plot with smooth line")
+```
+```{r}
+ggplot(data = dataset, aes(x = Denver, y = Portland)) + geom_point()
+
+```
+```{r}
+ggplot(data = dataset, aes(x = Denver, y = Portland)) + geom_line()
+
+```
+```{r}
+ggplot(data = dataset, aes(x = Denver)) + geom_bar()
+```
+```{r}
+ggplot(data = dataset, aes(x = Portland)) + geom_boxplot()
+```
+```{r}
+ggplot(data = dataset, aes(x = Chicago)) + geom_boxplot()
+```
+```{r}
+ggplot(data = dataset, aes(x = Chicago)) + geom_histogram()
+```
+```{r}
+ggplot(data = dataset, aes(x = Chicago)) +  geom_density()
+```
+```{r}
+ggplot(data = dataset, aes(x = Portland)) + geom_bar() + facet_wrap(~Denver)
+
+```
+```{r}
+ggplot(data = dataset, aes(x = Chicago, fill = Portland)) + geom_bar()
+```
+```{r}
+subset_data <- na.omit(dataset$Chicago[1:100])
+
+# Calculate the density using the updated subset
+density_result <- density(subset_data)
+
+# Plot the density
+plot(density_result)
+```
+```{r}
+install.packages("vioplot")
+library(vioplot)
+```
+
+```{r}
+ggplot(dataset, aes(x = Denver, y = Portland)) +
+  geom_violin()
+
+
+
+
+```
+```{r}
+ggplot(dataset, aes(x = Chicago, y =Denver, fill = Portland)) +
+  geom_tile()
+
+
+```
+```{r}
+ggplot(dataset, aes(x = Chicago, y = Portland)) +
+  geom_point() +
+  geom_smooth()
+
+```
+```{r}
+ggplot(dataset, aes(x = Chicago, y = Portland)) +
+  geom_point() +geom_smooth(method = "lm")
+```
+```{r}
+ggplot(dataset, aes(x = Chicago, y = Portland)) + geom_violin()
+
+```
+```{r}
+str(dataset)
+```
+```{r}
+ggplot(dataset, aes(x = Jerusalem  , y = Nahariyya)) +
+  geom_bar(stat = "identity")
+
+```
+```{r}
+ggplot(dataset, aes(x = Jerusalem )) +
+  geom_line(stat = "count")
+
+```
+```{r}
+ggplot(dataset, aes(x = Chicago, y = Portland)) +
+  geom_bar(stat = "identity")
+
+
+
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
